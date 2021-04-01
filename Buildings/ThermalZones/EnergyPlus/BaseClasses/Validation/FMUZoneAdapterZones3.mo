@@ -22,7 +22,6 @@ model FMUZoneAdapterZones3
     "Building model"
     annotation (Placement(transformation(extent={{-80,70},{-60,90}})));
   Buildings.ThermalZones.EnergyPlus.BaseClasses.ThermalZoneAdapter fmuZonCor(
-    buildingsLibraryRoot=Buildings.ThermalZones.EnergyPlus.BaseClasses.buildingsLibraryRoot,
     modelicaNameBuilding=modelicaNameBuilding,
     final idfName=idfName,
     final weaName=weaName,
@@ -57,12 +56,12 @@ model FMUZoneAdapterZones3
     k=1/CZon,
     initType=Modelica.Blocks.Types.Init.InitialState,
     y_start=294.15,
-    y(final unit="K",
+    y(
+      final unit="K",
       displayUnit="degC"))
     "Zone air temperature"
     annotation (Placement(transformation(extent={{60,20},{80,40}})));
   Buildings.ThermalZones.EnergyPlus.BaseClasses.ThermalZoneAdapter fmuZonSou(
-    buildingsLibraryRoot=Buildings.ThermalZones.EnergyPlus.BaseClasses.buildingsLibraryRoot,
     modelicaNameBuilding=modelicaNameBuilding,
     final idfName=idfName,
     final weaName=weaName,
@@ -77,12 +76,12 @@ model FMUZoneAdapterZones3
     k=1/CZon,
     initType=Modelica.Blocks.Types.Init.InitialState,
     y_start=294.15,
-    y(final unit="K",
+    y(
+      final unit="K",
       displayUnit="degC"))
     "Zone air temperature"
     annotation (Placement(transformation(extent={{60,-20},{80,0}})));
   Buildings.ThermalZones.EnergyPlus.BaseClasses.ThermalZoneAdapter fmuZonNor(
-    buildingsLibraryRoot=Buildings.ThermalZones.EnergyPlus.BaseClasses.buildingsLibraryRoot,
     modelicaNameBuilding=modelicaNameBuilding,
     final idfName=idfName,
     final weaName=weaName,
@@ -97,10 +96,12 @@ model FMUZoneAdapterZones3
     k=1/CZon,
     initType=Modelica.Blocks.Types.Init.InitialState,
     y_start=294.15,
-    y(final unit="K",
+    y(
+      final unit="K",
       displayUnit="degC"))
     "Zone air temperature"
     annotation (Placement(transformation(extent={{60,-60},{80,-40}})));
+
 equation
   connect(X_w.y,fmuZonCor.X_w)
     annotation (Line(points={{-67,54},{-14,54},{-14,34},{18,34}},color={0,0,127}));
