@@ -254,7 +254,7 @@ setting the input of <code>actSha</code> to <code>6</code>.
 Otherwise, the input is set to <code>0</code>.
 </p>
 <p>
-The the right of the model, there are three idealized cooling systems
+To the right of the model, there are three idealized cooling systems
 that keep the room air temperature below <i>25</i>&deg;C in each of the three
 zones.
 Also, each zone is connected to a constant, unconditioned outside air supply.

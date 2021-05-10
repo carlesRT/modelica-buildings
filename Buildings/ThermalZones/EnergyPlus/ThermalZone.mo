@@ -90,6 +90,7 @@ protected
     final modelicaInstanceName=modelicaInstanceName,
     final idfName=idfName,
     final weaName=weaName,
+    final relativeSurfaceTolerance=relativeSurfaceTolerance,
     final zoneName=zoneName,
     final nFluPor=nPorts,
     final usePrecompiledFMU=usePrecompiledFMU,

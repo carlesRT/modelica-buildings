@@ -18,7 +18,6 @@ model FMUZoneAdapterZones2
     weaName=Modelica.Utilities.Files.loadResource(
       "modelica://Buildings/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
     usePrecompiledFMU=false,
-    logLevel=Buildings.ThermalZones.EnergyPlus.Types.LogLevels.Debug,
     showWeatherData=false)
     "Building model"
     annotation (Placement(transformation(extent={{-80,70},{-60,90}})));
@@ -26,6 +25,7 @@ model FMUZoneAdapterZones2
     modelicaNameBuilding=modelicaNameBuilding,
     final idfName=idfName,
     final weaName=weaName,
+    relativeSurfaceTolerance=building.relativeSurfaceTolerance,
     final zoneName="Core_ZN",
     usePrecompiledFMU=true,
     final fmuName=Modelica.Utilities.Files.loadResource(
@@ -67,6 +67,7 @@ model FMUZoneAdapterZones2
     modelicaNameBuilding=modelicaNameBuilding,
     final idfName=idfName,
     final weaName=weaName,
+    relativeSurfaceTolerance=building.relativeSurfaceTolerance,
     final zoneName="South_ZN",
     usePrecompiledFMU=true,
     final fmuName=Modelica.Utilities.Files.loadResource(

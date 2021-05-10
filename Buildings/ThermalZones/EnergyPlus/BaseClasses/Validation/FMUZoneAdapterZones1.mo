@@ -25,11 +25,12 @@ model FMUZoneAdapterZones1
     modelicaNameBuilding=modelicaNameBuilding,
     final idfName=idfName,
     final weaName=weaName,
+    relativeSurfaceTolerance=building.relativeSurfaceTolerance,
     final zoneName="Core_ZN",
     usePrecompiledFMU=true,
     final fmuName=Modelica.Utilities.Files.loadResource(
       "modelica://Buildings/Resources/src/ThermalZones/EnergyPlus/FMUs/Zones1.fmu"),
-    logLevel=Buildings.ThermalZones.EnergyPlus.Types.LogLevels.Verbose,
+    logLevel=building.logLevel,
     final nFluPor=2)
     "Adapter to EnergyPlus"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));

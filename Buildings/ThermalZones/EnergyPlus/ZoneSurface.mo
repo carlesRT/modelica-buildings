@@ -33,7 +33,7 @@ protected
     "Number of inputs";
   constant Integer nOut=1
     "Number of outputs";
-  constant Integer nDer=1
+  constant Integer nDer=0
     "Number of derivatives";
   constant Integer nY=nOut+nDer+1
     "Size of output vector of exchange function";
@@ -48,6 +48,7 @@ protected
     modelicaInstanceName=modelicaInstanceName,
     idfName=idfName,
     weaName=weaName,
+    relativeSurfaceTolerance=relativeSurfaceTolerance,
     epName=surfaceName,
     usePrecompiledFMU=usePrecompiledFMU,
     fmuName=fmuName,
@@ -65,10 +66,18 @@ protected
     outNames={"Q_flow"},
     outUnits={"W"},
     nOut=nOut,
-    derivatives_structure={{1,1}},
+    derivatives_structure=fill(fill(nDer,2),nDer),
     nDer=nDer,
-    derivatives_delta={0.01})
+    derivatives_delta=fill(0,nDer))
     "Class to communicate with EnergyPlus";
+  //////////
+  // The derivative structure was:
+  //  derivatives_structure={{1,1}},
+  //  nDer=nDer,
+  //  derivatives_delta={0.1}
+  // This has been removed due to numerical noise,
+  // see https://github.com/lbl-srg/modelica-buildings/issues/2358#issuecomment-819578850
+  //////////
   Real yEP[nY]
     "Output of exchange function";
   Modelica.SIunits.Time tNext(
@@ -87,9 +96,9 @@ protected
     fixed=false,
     start=0)
     "Surface heat flow rate if T = TLast";
-  discrete Real dQ_flow_dT(
-    final unit="W/K")
-    "Derivative dQCon_flow / dT";
+//  discrete Real dQ_flow_dT(
+//    final unit="W/K")
+//    "Derivative dQCon_flow / dT";
 
 initial equation
   assert(
@@ -118,11 +127,13 @@ equation
       u={T,round(time,1E-3)},
       dummy=A);
     QLast_flow=yEP[1];
-    dQ_flow_dT=yEP[2];
-    tNext=yEP[3];
+    //dQ_flow_dT=yEP[2];
+    //tNext=yEP[3];
+    tNext=yEP[2];
     tLast=time;
   end when;
-  Q_flow=QLast_flow+(T-TLast)*dQ_flow_dT;
+  //Q_flow=QLast_flow+(T-TLast)*dQ_flow_dT;
+  Q_flow=QLast_flow;
   q_flow=Q_flow/A;
   nObj=synBui.synchronize.done;
   annotation (
@@ -140,7 +151,6 @@ and produces at the output <code>Q_flow</code>
 the net heat flow rate added to the surface from the air-side.
 This heat flow rate consists of
 </p>
-<p>
 <ul>
 <li>
 convective heat flow rate,
@@ -152,15 +162,22 @@ absorbed solar radiation,
 absorbed infrared radiation minus emitted infrared radiation.
 </li>
 </ul>
-</p>
 <p>
 By convention, <code>Q_flow &gt; 0</code> if there is net heat flow rate from the thermal zone to the surface,
 e.g., if the surface cools the thermal zone.
 The output <code>q_flow</code> is equal to <code>q_flow = Q_flow/A</code>, where
 <code>A</code> is the area of the heat transfer surface as obtained from EnergyPlus.
 </p>
+<p>
+Note that for most applications that require interfacing the front-facing and back-side facing surface with the
+building model, the model
+<a href=\"modelica://Buildings.ThermalZones.EnergyPlus.OpaqueConstruction\">
+Buildings.ThermalZones.EnergyPlus.OpaqueConstruction</a>
+is easier to use.
+</p>
 <h4>Usage</h4>
 <p>
+This model is typically used for a radiant slab above soil if the ground heat transfer is also modeled in Modelica.
 Consider an EnergyPlus input data file that has the following entry:
 </p>
 <pre>
@@ -194,14 +211,13 @@ The output <code>q_flow = Q_flow / A</code> is the heat flux
 per unit area of the surface.
 </p>
 <p>
-If used to connect a radiant slab from Modelica to EnergyPlus, this Modelica
-model is used twice, once to model the upwards facing surface of the slab, e.g., the floor,
-and once to model the downward facing surface, e.g., the ceiling.
-If the slab is above soil, then only one of this model may be used, but the downward facing surface
-of the slab needs to be connected to a soil model.
-Both of these configurations are illustrated in the model
-<a href=\"modelica://Buildings.ThermalZones.EnergyPlus.Examples.SingleFamilyHouse.RadiantHeatingCooling\">
-Buildings.ThermalZones.EnergyPlus.Examples.SingleFamilyHouse.RadiantHeatingCooling</a>.
+The model
+<a href=\"modelica://Buildings.ThermalZones.EnergyPlus.Examples.SingleFamilyHouse.RadiantHeatingWithGroundHeatTransfer\">
+Buildings.ThermalZones.EnergyPlus.Examples.SingleFamilyHouse.RadiantHeatingWithGroundHeatTransfer</a>
+illustrates this use. Note that if the ground heat transfer were modeled in EnergyPlus, then
+<a href=\"modelica://Buildings.ThermalZones.EnergyPlus.OpaqueConstruction\">
+Buildings.ThermalZones.EnergyPlus.OpaqueConstruction</a>
+should have been used, which is simpler to setup.
 </p>
 </html>",
       revisions="<html>
