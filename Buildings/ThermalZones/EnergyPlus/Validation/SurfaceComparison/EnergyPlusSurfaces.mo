@@ -1,5 +1,5 @@
 within Buildings.ThermalZones.EnergyPlus.Validation.SurfaceComparison;
-model EnergyPlusReference
+model EnergyPlusSurfaces
   "Model that contains Eplus OutputVariable used to validate ZoneSurface"
   extends Modelica.Icons.Example;
 
@@ -50,4 +50,4 @@ model EnergyPlusReference
       __Dymola_Algorithm="Cvode"),
     Diagram(coordinateSystem(extent={{-100,-100},{100,100}})),
     Icon(coordinateSystem(extent={{-100,-100},{100,100}})));
-end EnergyPlusReference;
+end EnergyPlusSurfaces;

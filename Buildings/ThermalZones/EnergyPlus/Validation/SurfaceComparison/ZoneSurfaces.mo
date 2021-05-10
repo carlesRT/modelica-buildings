@@ -1,7 +1,7 @@
 within Buildings.ThermalZones.EnergyPlus.Validation.SurfaceComparison;
-model GarageSurfaces
+model ZoneSurfaces
   "Example model with two EnergyPlus unconditioned zones with their separating surfaces modeled in Modelica"
-  extends SurfaceComparison.EnergyPlusReference;
+  extends EnergyPlusSurfaces;
 
   parameter Integer nSta = 3 "Number of states";
 
@@ -84,4 +84,4 @@ model GarageSurfaces
       __Dymola_Algorithm="Cvode"),
     Diagram(coordinateSystem(extent={{-100,-100},{120,100}})),
     Icon(coordinateSystem(extent={{-100,-100},{120,100}})));
-end GarageSurfaces;
+end ZoneSurfaces;
