@@ -121,6 +121,7 @@ First implementation.
 </ul>
 </html>"));
   end constructor;
+
   function destructor
     "Release storage"
     extends Modelica.Icons.Function;

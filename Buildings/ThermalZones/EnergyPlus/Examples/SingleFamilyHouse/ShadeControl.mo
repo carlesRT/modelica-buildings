@@ -46,8 +46,7 @@ model ShadeControl
   Buildings.ThermalZones.EnergyPlus.OutputVariable incBeaSou(
     name="Surface Outside Face Incident Beam Solar Radiation Rate per Area",
     key="Zn001:Wall001:Win001",
-    y(
-      final unit="W/m2"))
+    y(final unit="W/m2"))
     "Block that reads incident beam solar radiation on south window from EnergyPlus"
     annotation (Placement(transformation(extent={{-50,-120},{-30,-100}})));
   Buildings.Controls.OBC.Shade.Shade_T shaT(
