@@ -12,28 +12,33 @@ model EnergyPlusReference
     showWeatherData=true,
     computeWetBulbTemperature=false)
     "Building model"
-    annotation (Placement(transformation(extent={{-100,-100},{-80,-80}})));
+    annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
 
   Buildings.ThermalZones.EnergyPlus.OutputVariable TGarAir(
     name="Zone Mean Air Temperature",
     key="LIVING ZONE",
-    y(unit="K")) "Garage air temperature";
+    y(unit="K")) "Garage air temperature"
+    annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
   Buildings.ThermalZones.EnergyPlus.OutputVariable TIntWalLivSur(
     name="Surface Inside Face Temperature",
     key="Living:Interior",
-    y(unit="K")) "Interior wall living room surface temperature";
+    y(unit="K")) "Interior wall living room surface temperature"
+    annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
   Buildings.ThermalZones.EnergyPlus.OutputVariable TIntWalGarSur(
     name="Surface Inside Face Temperature",
     key="Garage:Interior",
-    y(unit="K")) "Interior wall garage surface temperature";
+    y(unit="K")) "Interior wall garage surface temperature"
+    annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   Buildings.ThermalZones.EnergyPlus.OutputVariable TWesWalGarSur(
     name="Surface Inside Face Temperature",
     key="Garage:WestWall",
-    y(unit="K")) "West wall garage surface temperature";
+    y(unit="K")) "West wall garage surface temperature"
+    annotation (Placement(transformation(extent={{-40,60},{-20,80}})));
   Buildings.ThermalZones.EnergyPlus.OutputVariable TEasWalGarSur(
     name="Surface Inside Face Temperature",
     key="Garage:EastWall",
-    y(unit="K")) "East wall garage surface temperature";
+    y(unit="K")) "East wall garage surface temperature"
+    annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
 
   annotation (
     Documentation(
