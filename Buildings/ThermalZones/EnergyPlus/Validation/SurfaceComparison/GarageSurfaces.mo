@@ -1,7 +1,7 @@
-within Buildings.ThermalZones.EnergyPlus.Validation.ZoneSurface;
+within Buildings.ThermalZones.EnergyPlus.Validation.SurfaceComparison;
 model GarageSurfaces
   "Example model with two EnergyPlus unconditioned zones with their separating surfaces modeled in Modelica"
-  extends Validation.ZoneSurface.EnergyPlusReference;
+  extends SurfaceComparison.EnergyPlusReference;
 
   parameter Integer nSta = 3 "Number of states";
 
@@ -70,7 +70,6 @@ model GarageSurfaces
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={70,-50})));
-
 
   annotation (
     Documentation(

@@ -1,4 +1,4 @@
-within Buildings.ThermalZones.EnergyPlus.Validation.ZoneSurface;
+within Buildings.ThermalZones.EnergyPlus.Validation.SurfaceComparison;
 model EnergyPlusReference
   "Model that contains Eplus OutputVariable used to validate ZoneSurface"
   extends Modelica.Icons.Example;
