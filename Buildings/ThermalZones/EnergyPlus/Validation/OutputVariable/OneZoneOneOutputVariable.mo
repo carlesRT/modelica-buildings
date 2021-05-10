@@ -5,7 +5,8 @@ model OneZoneOneOutputVariable
   Buildings.ThermalZones.EnergyPlus.OutputVariable equEle(
     name="Zone Electric Equipment Electricity Rate",
     key="LIVING ZONE",
-    y(final unit="W"))
+    y(
+      final unit="W"))
     "Block that reads output from EnergyPlus"
     annotation (Placement(transformation(extent={{60,30},{80,50}})));
   annotation (
